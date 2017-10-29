@@ -1,0 +1,8 @@
+package Refined
+
+opts = ""
+
+modules = Refined
+        , Test.Refined
+
+tests = Test.Refined.testMe
