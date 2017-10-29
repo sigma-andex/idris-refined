@@ -55,13 +55,6 @@ using (a: Type, P : a -> Type, Q : a -> Type)
        Type 
   Or f g c = DecCoProduct c (f c) (g c)
 
-x : Or (\c => fastIsElem c Refined.Props.lowerCase ) (\c => fastIsElem c Refined.Props.upperCase) 'A' 
-x = InR
-
 Letter : Char -> Type
 Letter = Or (\c => fastIsElem c Refined.Props.lowerCase) (\c => fastIsElem c Refined.Props.upperCase)
 
--- isElem : DecEq a => (x : a) -> (xs : List a) -> Dec (Elem x xs)
--- any : {P : a -> Type} -> (dec : (x : a) -> Dec (P x)) -> (xs : List a) -> Dec (Any P xs)
-isLowerCase : (c:Char) -> Dec (Elem c Refined.Props.lowerCase)
-isLowerCase c = isElem c Refined.Props.lowerCase
