@@ -19,7 +19,7 @@ x : Refined Char Digit
 x = '0'
 
 y : Refined Char Letter
-y = 'a'
+y = 'A'
 
 test : Char -> IO ()
 test c = print $ show c

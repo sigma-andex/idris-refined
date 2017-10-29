@@ -44,26 +44,22 @@ fastIsElem x (y :: xs) with (decEq x y)
 --    InL : Or c (Yes x) (No y) 
 --    InR : Or c (No x) (Yes y) 
 
-data OrX : (c:a) -> (left : Dec x) -> (right : Dec y) -> Type where 
-  InL : OrX c (Yes x) (No y) 
-  InR : OrX c (No x) (Yes y) 
-  
-Or : (c:a) -> 
-     { P : a -> Type } -> 
-     (left : a -> Dec (P c)) -> 
-     { Q : a -> Type } -> 
-     (right : a -> Dec (Q c)) -> 
-     Type
-Or c left right = OrX c (left c) (right c)
+using (a: Type, P : a -> Type, Q : a -> Type)  
+  data DecCoProduct : (c:a) -> (left : Dec (P c)) -> (right : Dec (Q c)) -> Type where 
+    InL : DecCoProduct c (Yes x) (No y) 
+    InR : DecCoProduct c (No x) (Yes y) 
+ 
+  Or : ( f : (x:a) -> Dec (P x) ) -> 
+       ( g : (x:a) -> Dec (Q x) ) -> 
+       ( c : a) -> 
+       Type 
+  Or f g c = DecCoProduct c (f c) (g c)
 
-X : (c:Char) -> Dec (Elem c Refined.Props.lowerCase)
-X c = fastIsElem c Refined.Props.lowerCase
+x : Or (\c => fastIsElem c Refined.Props.lowerCase ) (\c => fastIsElem c Refined.Props.upperCase) 'A' 
+x = InR
 
-Y : (c:Char) -> Dec (Elem c Refined.Props.lowerCase)
-Y c = fastIsElem c Refined.Props.upperCase
-
-x : Or 'A' X Y 
-x = ?h
+Letter : Char -> Type
+Letter = Or (\c => fastIsElem c Refined.Props.lowerCase) (\c => fastIsElem c Refined.Props.upperCase)
 
 -- isElem : DecEq a => (x : a) -> (xs : List a) -> Dec (Elem x xs)
 -- any : {P : a -> Type} -> (dec : (x : a) -> Dec (P x)) -> (xs : List a) -> Dec (Any P xs)
