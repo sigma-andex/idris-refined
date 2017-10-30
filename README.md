@@ -12,17 +12,20 @@ Chars can be refined using the Refined type.
 -- Only digits
 x : Refined Char Digit
 x = '0'
+-- x = 'a' will result in compile-time error
 
 -- Only letters
 y : Refined Char Letter
-y = 'A'
+y = 'a'
+-- y = '0' will result in compile-time error
 
 -- Letters or Digits
 z : Refined Char LetterOrDigit
 z = '0'
+-- z = '$' will result in compile-time error
 ```
 
-Refined types can be passed to functions expecting ordinary types. 
+Refined types can be passed to functions expecting ordinary types.
 ```idris
 test : Char -> IO ()
 test c = print $ show c
