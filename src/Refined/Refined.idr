@@ -26,7 +26,7 @@ z : Refined Char LetterOrDigit
 z = '0'
 
 test : Char -> IO ()
-test c = print $ show c
+test c = printLn $ show c
 
 main : IO ()
 main = test Refined.x

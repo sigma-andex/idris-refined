@@ -31,5 +31,3 @@ using (a: Type, P : a -> Type, Q : a -> Type)
        Type
   Or f g c = Dec (DecCoProduct c (f c) (g c))
 
-x : Dec (Elem 'A' ['a'..'z'])
-x = isElem 'A' ['a'..'z'] 
