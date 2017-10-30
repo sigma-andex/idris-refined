@@ -1,7 +1,8 @@
-module Refined.Props
+module Refined.Props.Char
 
 import Data.List
 import Data.List.Quantifiers
+import Props.Util
 
 %access public export
 
@@ -14,47 +15,31 @@ lowerCase = ['a'..'z']
 upperCase : List Char
 upperCase = ['A'..'Z']
 
+letters : List Char
+letters = lowerCase ++ upperCase
+
 Digit : Char -> Type
-Digit = \c => Elem c Refined.Props.digits
+Digit = \c => Elem c digits
 
 LowerCase : Char -> Type
-LowerCase = \c => Elem c Refined.Props.lowerCase
+LowerCase = \c => Elem c lowerCase
 
 UpperCase : Char -> Type
-UpperCase = \c => Elem c Refined.Props.upperCase
+UpperCase = \c => Elem c upperCase
 
-mkNo : {xs' : List a} ->
-       ((x' = y') -> Void) -> 
-       (Elem x' xs' -> Void) ->
-       Elem x' (y' :: xs') -> Void
-mkNo f g Here = f Refl
-mkNo f g (There x) = g x
+Whitespace : Char -> Type
+Whitespace = (=) "" 
 
-fastIsElem : DecEq a => (x : a) -> (xs : List a) -> Dec (Elem x xs)
-fastIsElem x [] = No absurd
-fastIsElem x (y :: xs) with (decEq x y)
-  fastIsElem x (x :: xs) | (Yes Refl) = Yes Here
-  fastIsElem x (y :: xs) | (No contra) with (fastIsElem x xs)
-    fastIsElem x (y :: xs) | (No contra) | (Yes prf) = Yes (There prf)
-    fastIsElem x (y :: xs) | (No contra) | (No f) = No (mkNo contra f)
+Letter : (c:Char) -> Type 
+Letter = Or (\c => fastIsElem c lowerCase) (\c => fastIsElem c upperCase)
 
---using (a : Type, P : a -> Type, Q : a -> Type) 
+isDigit : (c:Char) -> Dec (Elem c Refined.Props.Char.digits)
+isDigit = \c => fastIsElem c digits
 
---  data Or : (c:a) -> (left : Dec x) -> (right : Dec y) -> Type where 
---    InL : Or c (Yes x) (No y) 
---    InR : Or c (No x) (Yes y) 
+isLetter : (c:Char) -> Dec (Elem c Refined.Props.Char.letters)
+isLetter = \c => fastIsElem c letters 
 
-using (a: Type, P : a -> Type, Q : a -> Type)  
-  data DecCoProduct : (c:a) -> (left : Dec (P c)) -> (right : Dec (Q c)) -> Type where 
-    InL : DecCoProduct c (Yes x) (No y) 
-    InR : DecCoProduct c (No x) (Yes y) 
- 
-  Or : ( f : (x:a) -> Dec (P x) ) -> 
-       ( g : (x:a) -> Dec (Q x) ) -> 
-       ( c : a) -> 
-       Type 
-  Or f g c = DecCoProduct c (f c) (g c)
-
-Letter : Char -> Type
-Letter = Or (\c => fastIsElem c Refined.Props.lowerCase) (\c => fastIsElem c Refined.Props.upperCase)
+LetterOrDigit : Char -> Type
+--LetterOrDigit = Or (\c => Dec (Letter c)) (\c => Dec (Digit c)) 
+LetterOrDigit = Or isLetter isDigit 
 

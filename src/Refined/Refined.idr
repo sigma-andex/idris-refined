@@ -1,6 +1,7 @@
 module Refined
 
 import Data.List
+import Props.Util
 import Props.Char
 
 %access public export
@@ -20,6 +21,9 @@ x = '0'
 
 y : Refined Char Letter
 y = 'A'
+
+z : Refined Char LetterOrDigit
+z = '0'
 
 test : Char -> IO ()
 test c = print $ show c
