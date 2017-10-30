@@ -3,6 +3,14 @@ Idris-refined
 
 Port of [scala refined](https://github.com/fthomas/refined) library to idris using Sigma types.
 
+# Installation
+```bash
+git clone git@github.com:janschultecom/idris-refined.git
+make install
+idris -p Refined
+Idris> :module Refined
+```
+
 # Examples
 
 ## Chars
