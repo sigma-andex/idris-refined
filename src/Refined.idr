@@ -13,8 +13,8 @@ toRefined : { a : Type } -> { P : a -> Type } -> (x:a) -> { auto property : P x 
 toRefined value {property} = (value ** property)
 
 implicit 
-fromRefined : Refined Char Digit -> Char
-fromRefined (x ** prf) = x
+fromCharRefined : { P : Char -> Type } -> Refined Char P -> Char
+fromCharRefined = fst 
 
 x : Refined Char Digit
 x = '0'

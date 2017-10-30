@@ -1,7 +1,7 @@
 Idris-refined
 ====================
 
-Port of [scala refined](https://github.com/fthomas/refined) library to idris using Sigma types.
+Port of [scala refined](https://github.com/fthomas/refined) library to idris using dependent pairs.
 
 # Installation
 ```bash
