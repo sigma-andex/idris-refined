@@ -11,11 +11,10 @@ idris -p Refined
 Idris> :module Refined
 ```
 
-# Examples
+# Example
 
-## Chars
+Types can be refined using ```Refined```:
 
-Chars can be refined using the Refined type.
 ```idris
 -- Only digits
 x : Refined Char Digit
@@ -41,3 +40,18 @@ test c = print $ show c
 main : IO ()
 main = test Refined.x
 ```
+
+# Predicates
+
+## Char
+
+* Digit: checks if a ```Char``` is a digit
+* Letter: checks if a ```Char``` is a letter
+* LetterOrDigit: checks if a ```Char``` is a letter or digit
+* LowerCase: checks if a ```Char``` is a lower case character
+* UpperCase: checks if a ```Char``` is an upper case character
+* Whitespace: checks if a ```Char``` is white space
+
+## String
+
+* NonEmpty : checks if a ```String``` has at least one character
