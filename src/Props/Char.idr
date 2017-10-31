@@ -17,23 +17,26 @@ upperCase = ['A'..'Z']
 letters : List Char
 letters = lowerCase ++ upperCase
 
+whiteSpace : List Char
+whiteSpace = ['\n','\t',' ']
+
 isDigit : (c:Char) -> Dec (Elem c Refined.Props.Char.digits)
-isDigit = \c => fastIsElem c digits
+isDigit c = fastIsElem c digits
 
 isLetter : (c:Char) -> Dec (Elem c Refined.Props.Char.letters)
-isLetter = \c => fastIsElem c letters 
+isLetter c = fastIsElem c letters 
 
 Digit : Char -> Type
-Digit = \c => Elem c digits
+Digit c = Elem c digits
 
 LowerCase : Char -> Type
-LowerCase = \c => Elem c lowerCase
+LowerCase c = Elem c lowerCase
 
 UpperCase : Char -> Type
-UpperCase = \c => Elem c upperCase
+UpperCase c = Elem c upperCase
 
 Whitespace : Char -> Type
-Whitespace = (=) "" 
+Whitespace c = Elem c whiteSpace 
 
 Letter : (c:Char) -> Type 
 Letter = Or (\c => fastIsElem c lowerCase) (\c => fastIsElem c upperCase)

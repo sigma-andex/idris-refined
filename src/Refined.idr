@@ -31,6 +31,9 @@ y = 'A'
 z : Refined Char LetterOrDigit
 z = '0'
 
+xx : Refined Char Whitespace
+xx = ' '
+
 s : Refined String NonEmpty
 s = "s"
 
