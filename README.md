@@ -17,19 +17,26 @@ Types can be refined using ```Refined```:
 
 ```idris
 -- Only digits
-x : Refined Char Digit
-x = '0'
--- x = 'a' will result in compile-time error
+zeroIsDigit : Refined Char Digit
+zeroIsDigit = '0'
+-- zeroIsDigit = 'a' will result in compile-time error
 
 -- Only letters
-y : Refined Char Letter
-y = 'a'
--- y = '0' will result in compile-time error
+upperAIsLetter : Refined Char Letter
+upperAIsLetter = 'A'
+-- upperAIsLetter = '0' will result in compile-time error
 
 -- Letters or Digits
-z : Refined Char LetterOrDigit
-z = '0'
+lowerAIsAlpha : Refined Char AlphaNumeric
+lowerAIsAlpha = 'a'
+
+upperAIsAlpha : Refined Char AlphaNumeric
+upperAIsAlpha = 'A'
+
+zeroIsAlpha : Refined Char AlphaNumeric
+zeroIsAlpha = '0'
 -- z = '$' will result in compile-time error
+
 ```
 
 Refined types can be passed to functions expecting ordinary types.
@@ -47,7 +54,7 @@ main = test Refined.x
 
 * Digit: checks if a ```Char``` is a digit
 * Letter: checks if a ```Char``` is a letter
-* LetterOrDigit: checks if a ```Char``` is a letter or digit
+* AlphaNumeric: checks if a ```Char``` is a letter or digit
 * LowerCase: checks if a ```Char``` is a lower case character
 * UpperCase: checks if a ```Char``` is an upper case character
 * Whitespace: checks if a ```Char``` is white space
