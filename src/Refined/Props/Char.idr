@@ -43,3 +43,7 @@ LetterOrDigit : Char -> Type
 --LetterOrDigit = Or (\c => Dec (Letter c)) (\c => Dec (Digit c)) 
 LetterOrDigit = Or isLetter isDigit 
 
+LowerOrUpperOrDigit : Char -> Type 
+LowerOrUpperOrDigit = EitherK LowerCase $ EitherK UpperCase Digit
+
+

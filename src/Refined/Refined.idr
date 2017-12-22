@@ -25,6 +25,9 @@ y = 'A'
 z : Refined Char LetterOrDigit
 z = '0'
 
+a : Refined Char LowerOrUpperOrDigit
+a = '0'
+
 test : Char -> IO ()
 test c = print $ show c
 

@@ -1,6 +1,7 @@
 module Refined.Props.Util
 
 import Data.List
+--import Data.Vect 
 
 %access public export
 
@@ -20,6 +21,12 @@ fastIsElem x (y :: xs) with (decEq x y)
     fastIsElem x (y :: xs) | (No contra) | (Yes prf) = Yes (There prf)
     fastIsElem x (y :: xs) | (No contra) | (No f) = No (mkNo contra f)
 
+using (a: Type, P : a -> Type, Q: a -> Type)
+  
+  data EitherK : { a : Type } -> ( P : a -> Type ) -> ( Q : a -> Type) -> a -> Type where 
+    LeftK : ( prf : P c ) -> EitherK P Q c 
+    RightK : ( prf : Q c ) -> EitherK P Q c
+
 using (a: Type, P : a -> Type, Q : a -> Type)
   data DecCoProduct : (c:a) -> (left : Dec (P c)) -> (right : Dec (Q c)) -> Type where
     InL : DecCoProduct c (Yes x) (No y)
@@ -31,5 +38,3 @@ using (a: Type, P : a -> Type, Q : a -> Type)
        Type
   Or f g c = Dec (DecCoProduct c (f c) (g c))
 
-x : Dec (Elem 'A' ['a'..'z'])
-x = isElem 'A' ['a'..'z'] 
