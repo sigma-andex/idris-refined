@@ -22,26 +22,32 @@ implicit
 fromStringRefined : { P : String -> Type } -> Refined String P -> String
 fromStringRefined = fst
 
-x : Refined Char Digit
-x = '0'
+zeroIsDigit : Refined Char Digit
+zeroIsDigit = '0'
 
-y : Refined Char Letter
-y = 'A'
+upperAIsLetter : Refined Char Letter
+upperAIsLetter = 'A'
 
-z : Refined Char LetterOrDigit
-z = '0'
+lowerAIsAlpha : Refined Char AlphaNumeric
+lowerAIsAlpha = 'a'
 
-xx : Refined Char Whitespace
-xx = ' '
+upperAIsAlpha : Refined Char AlphaNumeric
+upperAIsAlpha = 'A'
 
-s : Refined String NonEmpty
-s = "s"
+zeroIsAlpha : Refined Char AlphaNumeric
+zeroIsAlpha = '0'
 
-a : Refined Char LowerOrUpperOrDigit
-a = '0'
+--dollarIsNotAlpha : Refined Char AlphaNumeric -> Void 
+--dollarIsNotAlpha = absurd $ toRefined '$'
+
+blankIsWhitespace : Refined Char Whitespace
+blankIsWhitespace = ' '
+
+textIsNonEmpty : Refined String NonEmpty
+textIsNonEmpty = "text"
 
 test : Char -> IO ()
 test c = printLn $ show c
 
 main : IO ()
-main = test Refined.x
+main = test Refined.upperAIsAlpha

@@ -39,12 +39,10 @@ Whitespace : Char -> Type
 Whitespace c = Elem c whiteSpace 
 
 Letter : (c:Char) -> Type 
-Letter = Or (\c => fastIsElem c lowerCase) (\c => fastIsElem c upperCase)
+Letter = EitherK LowerCase UpperCase
 
-LetterOrDigit : Char -> Type
-LetterOrDigit = Or isLetter isDigit 
+AlphaNumeric : Char -> Type
+AlphaNumeric = EitherK Letter Digit 
 
-LowerOrUpperOrDigit : Char -> Type 
-LowerOrUpperOrDigit = EitherK LowerCase $ EitherK UpperCase Digit
 
 

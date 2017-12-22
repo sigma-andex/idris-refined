@@ -9,6 +9,6 @@ isEmpty : (s:String) -> Type
 isEmpty s = Dec ( (=) "" s)
 
 NonEmpty : String -> Type
-NonEmpty s = NotGiven (decEq "" s)
+NonEmpty s = Denied (decEq "" s)
                  
 

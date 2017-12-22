@@ -27,20 +27,9 @@ using (a: Type, P : a -> Type, Q: a -> Type)
     LeftK : ( prf : P c ) -> EitherK P Q c
     RightK : ( prf : Q c ) -> EitherK P Q c
 
-using (a: Type, P : a -> Type, Q : a -> Type)
-  data DecCoProduct : (c:a) -> (left : Dec (P c)) -> (right : Dec (Q c)) -> Type where
-    InL : DecCoProduct c (Yes x) (No y)
-    InR : DecCoProduct c (No x) (Yes y)
-
-  Or : ( f : (x:a) -> Dec (P x) ) ->
-       ( g : (x:a) -> Dec (Q x) ) ->
-       ( c : a) ->
-       Type
-  Or f g c = Dec (DecCoProduct c (f c) (g c))
-
 -- Add these to not depend on contrib
 data Given : Dec x -> Type where
   Always : Given (Yes prf)
 
-data NotGiven : Dec x -> Type where
-  Never : NotGiven (No contra)
+data Denied : Dec x -> Type where
+  Never : Denied (No contra)
