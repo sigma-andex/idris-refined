@@ -37,8 +37,8 @@ upperAIsAlpha = 'A'
 zeroIsAlpha : Refined Char AlphaNumeric
 zeroIsAlpha = '0'
 
---dollarIsNotAlpha : Refined Char AlphaNumeric -> Void 
---dollarIsNotAlpha = absurd $ toRefined '$'
+--dollarIsNotAlpha : Refined Char AlphaNumeric 
+--dollarIsNotAlpha = '$'
 
 blankIsWhitespace : Refined Char Whitespace
 blankIsWhitespace = ' '
