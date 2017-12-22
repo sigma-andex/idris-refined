@@ -2,7 +2,9 @@ package Refined
 
 opts = ""
 
-modules = Refined
-        , Test.Refined
+sourcedir = src 
+modules = Props.Util
+        , Props.Char
+        , Refined
 
 tests = Test.Refined.testMe

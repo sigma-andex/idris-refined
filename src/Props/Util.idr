@@ -1,7 +1,6 @@
 module Refined.Props.Util
 
 import Data.List
---import Data.Vect 
 
 %access public export
 
@@ -13,6 +12,7 @@ mkNo : {xs' : List a} ->
 mkNo f g Here = f Refl
 mkNo f g (There x) = g x
 
+-- Use this until https://github.com/idris-lang/Idris-dev/issues/4161
 fastIsElem : DecEq a => (x : a) -> (xs : List a) -> Dec (Elem x xs)
 fastIsElem x [] = No absurd
 fastIsElem x (y :: xs) with (decEq x y)
@@ -22,9 +22,9 @@ fastIsElem x (y :: xs) with (decEq x y)
     fastIsElem x (y :: xs) | (No contra) | (No f) = No (mkNo contra f)
 
 using (a: Type, P : a -> Type, Q: a -> Type)
-  
-  data EitherK : { a : Type } -> ( P : a -> Type ) -> ( Q : a -> Type) -> a -> Type where 
-    LeftK : ( prf : P c ) -> EitherK P Q c 
+
+  data EitherK : { a : Type } -> ( P : a -> Type ) -> ( Q : a -> Type) -> a -> Type where
+    LeftK : ( prf : P c ) -> EitherK P Q c
     RightK : ( prf : Q c ) -> EitherK P Q c
 
 using (a: Type, P : a -> Type, Q : a -> Type)
@@ -38,3 +38,9 @@ using (a: Type, P : a -> Type, Q : a -> Type)
        Type
   Or f g c = Dec (DecCoProduct c (f c) (g c))
 
+-- Add these to not depend on contrib
+data Given : Dec x -> Type where
+  Always : Given (Yes prf)
+
+data NotGiven : Dec x -> Type where
+  Never : NotGiven (No contra)
