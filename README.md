@@ -1,4 +1,4 @@
-Idris-refined
+Idris-refined [![Build Status](https://travis-ci.org/janschultecom/idris-refined.svg?branch=master)](https://travis-ci.org/janschultecom/idris-refined)
 ====================
 
 Port of [scala refined](https://github.com/fthomas/refined) library to idris using dependent pairs.
