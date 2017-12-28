@@ -1,7 +1,7 @@
-module Refined.Props.Char
+module Props.Char
 
 import Data.List
-import Props.Util
+import public Props.Util
 
 %access public export
 
@@ -20,12 +20,6 @@ letters = lowerCase ++ upperCase
 whiteSpace : List Char
 whiteSpace = ['\n','\t',' ']
 
-isDigit : (c:Char) -> Dec (Elem c Refined.Props.Char.digits)
-isDigit c = fastIsElem c digits
-
-isLetter : (c:Char) -> Dec (Elem c Refined.Props.Char.letters)
-isLetter c = fastIsElem c letters 
-
 Digit : Char -> Type
 Digit c = Elem c digits
 
@@ -36,13 +30,10 @@ UpperCase : Char -> Type
 UpperCase c = Elem c upperCase
 
 Whitespace : Char -> Type
-Whitespace c = Elem c whiteSpace 
+Whitespace c = Elem c whiteSpace
 
-Letter : (c:Char) -> Type 
+Letter : (c:Char) -> Type
 Letter = EitherK LowerCase UpperCase
 
 AlphaNumeric : Char -> Type
-AlphaNumeric = EitherK Letter Digit 
-
-
-
+AlphaNumeric = EitherK Letter Digit

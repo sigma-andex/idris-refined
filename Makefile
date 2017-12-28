@@ -9,7 +9,7 @@ build:
 	idris --build idris-refined.ipkg
 
 test: build
-	idris --testpkg idris-refined.ipkg
+	idris --testpkg idris-refined-test.ipkg
 
 clean:
 	idris --clean idris-refined.ipkg

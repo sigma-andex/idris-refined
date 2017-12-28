@@ -1,6 +1,6 @@
-module Refined.Props.Util
+module Props.Util
 
-import Data.List
+import public Data.List
 
 %access public export
 

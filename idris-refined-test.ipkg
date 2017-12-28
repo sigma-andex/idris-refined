@@ -1,0 +1,11 @@
+package Refined
+
+opts = ""
+
+modules = Props.Util
+  , Props.Char
+  , Props.String
+  , Refined
+	, Test.Spec
+
+tests = Test.Spec.testMe
