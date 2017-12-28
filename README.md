@@ -1,10 +1,6 @@
-Idris-refined [![Build Status](https://travis-ci.org/janschultecom/idris-refined.svg?branch=master)](https://travis-ci.org/janschultecom/idris-refined) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+Idris-refined [![Build Status](https://travis-ci.org/janschultecom/idris-refined.svg?branch=master)](https://travis-ci.org/janschultecom/idris-refined) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Join the chat at https://gitter.im/idris-refined/Lobby](https://badges.gitter.im/idris-refined/Lobby.svg)](https://gitter.im/idris-refined/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ====================
-
-[![Join the chat at https://gitter.im/idris-refined/Lobby](https://badges.gitter.im/idris-refined/Lobby.svg)](https://gitter.im/idris-refined/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 Port of [scala refined](https://github.com/fthomas/refined) library to idris using dependent pairs.
-
 
 # Installation
 ```bash
@@ -50,6 +46,7 @@ test c = print $ show c
 main : IO ()
 main = test Refined.x
 ```
+See the Test case for more examples. 
 
 # Predicates
 
@@ -57,7 +54,7 @@ main = test Refined.x
 
 * Greater n: checks if a ```Nat``` is strictly greater than n
 * GreaterEqual n: checks if a ```Nat``` is greater or equal to n
-* Less n: checks if a ```Nat``` is strictly less than n 
+* Less n: checks if a ```Nat``` is strictly less than n
 * LessEqual n: checks if a ```Nat``` is less or equal to n
 
 ## Char
