@@ -1,4 +1,4 @@
-Idris-refined [![Build Status](https://travis-ci.org/janschultecom/idris-refined.svg?branch=master)](https://travis-ci.org/janschultecom/idris-refined) [![License:  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+Idris-refined [![Build Status](https://travis-ci.org/janschultecom/idris-refined.svg?branch=master)](https://travis-ci.org/janschultecom/idris-refined) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ====================
 
 Port of [scala refined](https://github.com/fthomas/refined) library to idris using dependent pairs.
