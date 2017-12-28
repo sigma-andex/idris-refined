@@ -19,3 +19,8 @@ fromCharRefined = fst
 implicit
 fromStringRefined : { P : String -> Type } -> Refined String P -> String
 fromStringRefined = fst
+
+implicit
+fromNatRefined : { P : Nat -> Type } -> Refined Nat P -> Nat
+fromNatRefined = fst
+

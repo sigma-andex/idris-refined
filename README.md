@@ -51,6 +51,13 @@ main = test Refined.x
 
 # Predicates
 
+## Nat
+
+* Greater n: checks if a ```Nat``` is strictly greater than n
+* GreaterEqual n: checks if a ```Nat``` is greater or equal to n
+* Less n: checks if a ```Nat``` is strictly less than n 
+* LessEqual n: checks if a ```Nat``` is less or equal to n
+
 ## Char
 
 * Digit: checks if a ```Char``` is a digit
